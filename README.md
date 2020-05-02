@@ -62,7 +62,7 @@ export default class MyApp extends App<{}> {
       return App.getInitialProps(appContext);
     } catch (err) {
       if (err.status === 401) {
-        session.redirectToLogin(appContext.ctx);
+        auth.redirectToLogin(appContext.ctx);
         return {};
       }
     }
@@ -71,9 +71,9 @@ export default class MyApp extends App<{}> {
     const { Component, pageProps, router } = this.props;
 
     return (
-      <session.Provider>
+      <auth.Provider>
         <Component {...pageProps} />
-      </session.Provider>
+      </auth.Provider>
     );
   }
 }
