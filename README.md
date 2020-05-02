@@ -47,5 +47,48 @@ auth.bind(MyPage, async ({ api }) => {
 });
 ```
 
+### Hooks:
+
+```typescript
+// pages/_app.tsx
+import App, { AppContext } from 'next/app';
+import auth from 'src/auth';
+
+export default class MyApp extends App<{}> {
+  static async getInitialProps(appContext: AppContext) {
+    const session = auth.get(appContext.ctx);
+
+    try {
+      return App.getInitialProps(appContext);
+    } catch (err) {
+      if (err.status === 401) {
+        session.redirectToLogin(appContext.ctx);
+        return {};
+      }
+    }
+  }
+  render() {
+    const { Component, pageProps, router } = this.props;
+
+    return (
+      <session.Provider>
+        <Component {...pageProps} />
+      </session.Provider>
+    );
+  }
+}
+
+// pages/example.tsx
+import auth from 'src/auth';
+export default function MyComponent() {
+  const session = auth.useSession();
+  function onClick() {
+    session.api.post('/users/me/images', { x: 32 });
+  }
+  return <button onClick={onClick}>Do something</button>;
+}
+```
+
+
 For a full example see /example.
 
