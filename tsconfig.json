@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": "./dist",
+    "strict": true,
+    "jsx": "preserve"
+  },
+  "include": [
+    "lib/index.ts"
+  ]
+}

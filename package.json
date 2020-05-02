@@ -1,0 +1,35 @@
+{
+  "name": "next-simple-auth",
+  "version": "1.0.0",
+  "description": "Simple cookie authentication system for Next.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublish": "npm run build",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aantthony/next-simple-auth.git"
+  },
+  "author": "Anthony Foster",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aantthony/next-simple-auth/issues"
+  },
+  "homepage": "https://github.com/aantthony/next-simple-auth#readme",
+  "devDependencies": {
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.7",
+    "@types/node": "^13.13.4",
+    "@types/js-cookie": "^2.2.6",
+    "next": "9",
+    "typescript": "3"
+  },
+  "dependencies": {
+    "cookie": "^0.4.1",
+    "js-cookie": "^2.2.1",
+    "react": "*"
+  }
+}
