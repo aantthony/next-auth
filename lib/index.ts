@@ -22,6 +22,7 @@ export interface AuthManager<ContextProps> {
 
   setCookieValue(newValue: string | null): void;
   redirectToLogin<T>(ctx: NextPageContext): void;
+  redirectWithCookie(ctx: NextPageContext, path: string, cookieValue: string): void;
 
   // Access the session from within a component (client-side only. On server-side, this will return an unauthenticated session object).
   useSession(): ContextProps;
@@ -116,6 +117,15 @@ export default function createAuthManager<T>(options: Options<T>): AuthManager<T
         });
         ctx.res.end();
       }
+    },
+    redirectWithCookie(ctx: NextPageContext, path: string, cookieValue: string) {
+      const res = ctx.res;
+      if (!res) throw new Error('SSR only.');
+      res.writeHead(302, {
+        Location: `${settings.https ? 'https' : 'http'}://${ctx.req!.headers.host}/${path}`,
+        'Set-Cookie': createCookieString(settings, cookieValue),
+      });
+      res.end();
     },
     Provider(props: { children: React.ReactNode }) {
       const value = typeof window !== 'undefined'
