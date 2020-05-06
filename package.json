@@ -1,6 +1,6 @@
 {
   "name": "next-simple-auth",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Simple cookie authentication system for Next.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
