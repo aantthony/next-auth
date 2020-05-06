@@ -64,8 +64,8 @@ function createCookieString<T>(settings: Settings<T>, value: string | null): str
   const expires = new Date(Date.now() + (settings.cookieExpirySeconds) * 1000);
 
   const cookieString = settings.https
-    ? `${settings.cookieName}=${value}; path=/; Expires=${expires.toUTCString()}; samesite=strict; secure`
-    : `${settings.cookieName}=${value}; path=/; Expires=${expires.toUTCString()}; samesite=strict`;
+    ? `${settings.cookieName}=${value}; Path=/; Expires=${expires.toUTCString()}; SameSite=Lax; Secure`
+    : `${settings.cookieName}=${value}; Path=/; Expires=${expires.toUTCString()}; SameSite=Lax`;
 
   return cookieString;
 }
