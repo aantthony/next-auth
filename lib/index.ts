@@ -121,6 +121,7 @@ export default function createAuthManager<T>(options: Options<T>): AuthManager<T
     redirectWithCookie(ctx: NextPageContext, path: string, cookieValue: string) {
       const res = ctx.res;
       if (!res) throw new Error('SSR only.');
+      if (path[0] === '/') path = path.substring(1);
       res.writeHead(302, {
         Location: `${settings.https ? 'https' : 'http'}://${ctx.req!.headers.host}/${path}`,
         'Set-Cookie': createCookieString(settings, cookieValue),
